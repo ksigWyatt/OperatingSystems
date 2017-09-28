@@ -5,7 +5,7 @@ int result = 0;
 int value = 0;
 
 
-int main(int argv, char *argv[]) {
-	char *name = argv[0];
+int main(int argc, char *argv[]) {
+	
    
 }

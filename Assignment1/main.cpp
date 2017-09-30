@@ -20,17 +20,20 @@ int main(int argc, char** argv) {
     // Create a child process
     int child_id = fork();
     
+    // Inside the child
     if (child_id == 0) {
-
-       printf("Child of _ is % d\n", getpid());
+        //printf("Child of % s is % d\n", name, getpid());
+        result = calculateFactorial(value);
        return 0;
-
     } 
-    else if(child_id > 0){
-        
-	result = calculateFactorial(value);
+    // inside the parent
+    else {
+        printf("Factorial of %d = %d\n", value, result);
+        //printf("My id is % d\n", getpid());
+        return 0;
     }
-    cout << "the result is: " << result << endl;
+    
+    
     return 0;
 }
 

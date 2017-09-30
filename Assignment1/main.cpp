@@ -11,7 +11,13 @@ int value = 0;
 
 int calculateFactorial(int num) {
     
-    result = 1;
+    while(num > 0) {
+        result = num + num - 1;
+        num--;
+    }
+    if (num <= 0) {
+        result = 1;
+    }
     return result; 
 }
 
@@ -20,20 +26,25 @@ int main(int argc, char** argv) {
     // Create a child process
     int child_id = fork();
     
-    // Inside the child
+    // Inside the parent
     if (child_id == 0) {
+        
         //printf("Child of % s is % d\n", name, getpid());
-        result = calculateFactorial(value);
-       return 0;
-    } 
-    // inside the parent
-    else {
+        //wait(1);
         printf("Factorial of %d = %d\n", value, result);
+    } 
+    // inside the child
+    else {
         //printf("My id is % d\n", getpid());
-        return 0;
+        
+        cout << "Enter an integer" << endl;
+        cin >> value;
+        
+        if ((value > 1) || (value < 5)) {
+            result = calculateFactorial(value);
+        }
     }
-    
-    
+
     return 0;
 }
 

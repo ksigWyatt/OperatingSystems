@@ -38,3 +38,4 @@
 
 ## Netbeans IDE Specific files
 **/nbproject/
+*.inc

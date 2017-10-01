@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+
+# Extra files as needed
+/.vscode/
+*.docx
+
+## Netbeans IDE Specific files
+**/nbproject/
+*.inc

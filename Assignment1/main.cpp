@@ -40,11 +40,13 @@ int main(int argc, char** argv) {
         cout << "Enter an integer" << endl;
         cin >> value;
         
+        
         if ((value > 1) || (value < 5)) {
+            // Store result of 
             result = calculateFactorial(value);
+            cout << result << " is the result of the factorial. " << endl;
         }
     }
-
     return 0;
 }
 

@@ -40,7 +40,9 @@ int main(int argc, char* argv[]) {
         if ((value > 1) || (value < 5)) {
             // Store result of 
             result = calculateFactorial(value);
-            //cout << result << " is the result of the factorial. " << endl;
+            
+            // getting 1280 for the factorial?
+            exit(result);
         }
     } 
     // inside the parent
@@ -48,7 +50,7 @@ int main(int argc, char* argv[]) {
         printf("My id is % d\n\n", getpid());
         
         // returns the PID of the child that was operating before the process ended
-        pid_t child_id = wait(&result);
+        wait(&result);
         
         printf("Factorial of %d = %d\n", value, result);
         

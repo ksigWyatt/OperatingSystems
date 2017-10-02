@@ -12,7 +12,7 @@ int result = 0;
 int value = 0;
 
 int calculateFactorial(int value) {
-    
+    // n * n-1
     for(int i = 1; i <= value; ++i) {
         result *= i;
     }
@@ -26,7 +26,10 @@ int calculateFactorial(int value) {
 
 int main(int argc, char* argv[]) {
     
+    int status = 0;
+    
     // Create a child process
+    //char process = argv[0];
     pid_t pid = fork();
     
     // Inside the child
@@ -42,15 +45,15 @@ int main(int argc, char* argv[]) {
             result = calculateFactorial(value);
             
             // getting 1280 for the factorial?
-            exit(result);
+            exit(0);
         }
     } 
     // inside the parent
     else if (pid > 0){
         printf("My id is % d\n\n", getpid());
         
-        // returns the PID of the child that was operating before the process ended
-        wait(&result);
+        // waiting for the child to finish
+        wait(&status);
         
         printf("Factorial of %d = %d\n", value, result);
         

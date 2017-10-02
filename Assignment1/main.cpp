@@ -3,51 +3,59 @@
 #include <iostream>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 using namespace std;
 
 int result = 0;
 int value = 0;
 
-int calculateFactorial(int num) {
+int calculateFactorial(int value) {
     
-    while(num > 0) {
-        result = num + num - 1;
-        num--;
+    for(int i = 1; i <= value; ++i) {
+        result *= i;
     }
-    if (num <= 0) {
+    if (value <= 0) {
         result = 1;
     }
+    
+    printf("the factorial of %d is %d\n", value, result);
     return result; 
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
     
     // Create a child process
-    int child_id = fork();
+    pid_t pid = fork();
     
-    // Inside the parent
-    if (child_id == 0) {
+    // Inside the child
+    if (pid == 0) {
         
-        //printf("Child of % s is % d\n", name, getpid());
-        //wait(1);
-        printf("Factorial of %d = %d\n", value, result);
-    } 
-    // inside the child
-    else {
-        //printf("My id is % d\n", getpid());
+        printf("Child pid is % d\n" ,getpid());
         
         cout << "Enter an integer" << endl;
         cin >> value;
-        
-        
+       
         if ((value > 1) || (value < 5)) {
             // Store result of 
             result = calculateFactorial(value);
-            cout << result << " is the result of the factorial. " << endl;
+            //cout << result << " is the result of the factorial. " << endl;
         }
+    } 
+    // inside the parent
+    else if (pid > 0){
+        printf("My id is % d\n\n", getpid());
+        
+        // returns the PID of the child that was operating before the process ended
+        pid_t child_id = wait(&result);
+        
+        printf("Factorial of %d = %d\n", value, result);
+        
+    }
+    else {
+        printf("Fork Failed!\n");
+        return 1;
     }
     return 0;
 }
-
-

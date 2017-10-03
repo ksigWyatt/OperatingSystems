@@ -29,12 +29,12 @@ int calculateFactorial(int value) {
 }
 
 int main(int argc, char* argv[]) {
-    int status;
-    
+      
     // Ask for input
-    cout << "Enter an integer between 1 and 5: " << endl;
+    cout << "Enter an integer" << endl;
     cin >> value;
-   
+    
+    
     // Create a child process
     pid_t pid = fork();
     
@@ -42,12 +42,13 @@ int main(int argc, char* argv[]) {
     if (pid == 0) {
             
         //Check that the value is of the correct number
-        if (value >= 1) {
-            if (value <= 5) {
+        if (value > 1) {
+            if (value < 5) {
                  // Store result of 
                  result = calculateFactorial(value);
 
                  // Alert the waiting processes that we are done
+                 // is there a way of achieving this without using exit??
                  exit(result); 
             }
             // > 1 && > 5
@@ -68,11 +69,6 @@ int main(int argc, char* argv[]) {
         // Waiting for the child to finish
         wait(&result);
         wait(&value);
-        
-        // List that did not work - But might be correct after some factoring
-        //WEXITSTATUS(status);
-        
-        
         // Fixing the result value - the value is multiplied by 255
         result = result / 255;
         
@@ -86,7 +82,9 @@ int main(int argc, char* argv[]) {
         else {
             // Output as specified by the assignment
             printf("Factorial of %d = %d\n", value, result);
-        }   
+        }
+        
+        
     }
     // If the fork failed handle the exception - end the program with code 1
     else {

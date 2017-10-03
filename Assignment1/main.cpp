@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
                  result = calculateFactorial(value);
 
                  // Alert the waiting processes that we are done
+                 // is there a way of achieving this without using exit??
                  exit(result); 
             }
             // > 1 && > 5

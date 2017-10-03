@@ -8,11 +8,13 @@
 
 using namespace std;
 
+// init of Global vars
 int result = 0;
 int value = 0;
 
 int calculateFactorial(int value) {
-    
+    // init of result to 1
+    result = 1;
     for(int i = 1; i <= value; ++i) {
         result *= i;
     }
@@ -26,33 +28,40 @@ int calculateFactorial(int value) {
 
 int main(int argc, char* argv[]) {
     
+    int status = 0;
+    
+    // Ask for input
+    cout << "Enter an integer" << endl;
+    cin >> value;
+    
     // Create a child process
     pid_t pid = fork();
     
     // Inside the child
     if (pid == 0) {
-        
-        printf("Child pid is % d\n" ,getpid());
-        
-        cout << "Enter an integer" << endl;
-        cin >> value;
-       
+            
         if ((value > 1) || (value < 5)) {
             // Store result of 
             result = calculateFactorial(value);
-            //cout << result << " is the result of the factorial. " << endl;
+            
+            // Alert the waiting processes that we are done
+            exit(result);
         }
     } 
-    // inside the parent
+    // Inside the parent
     else if (pid > 0){
-        printf("My id is % d\n\n", getpid());
         
-        // returns the PID of the child that was operating before the process ended
-        pid_t child_id = wait(&result);
+        // Waiting for the child to finish
+        wait(&result);
+        wait(&value);
+        // Fixing the result value - the value is multiplied by 255
+        result = result / 255;
         
+        // Output as specified by the assignment
         printf("Factorial of %d = %d\n", value, result);
         
     }
+    // If the fork failed handle the exception - end the program with code 1
     else {
         printf("Fork Failed!\n");
         return 1;

@@ -15,24 +15,25 @@ int value = 0;
 int calculateFactorial(int value) {
     // init of result to 1
     result = 1;
-    for(int i = 1; i <= value; ++i) {
-        result *= i;
-    }
+    
+    // reset the value to 1 if the user enters a number <= 0
     if (value <= 0) {
         result = 1;
     }
     
-    printf("the factorial of %d is %d\n", value, result);
+    for(int i = 1; i <= value; ++i) {
+        result *= i;
+    }    
+    
     return result; 
 }
 
 int main(int argc, char* argv[]) {
-    
-    int status = 0;
-    
+      
     // Ask for input
     cout << "Enter an integer" << endl;
     cin >> value;
+    
     
     // Create a child process
     pid_t pid = fork();
@@ -40,12 +41,26 @@ int main(int argc, char* argv[]) {
     // Inside the child
     if (pid == 0) {
             
-        if ((value > 1) || (value < 5)) {
-            // Store result of 
-            result = calculateFactorial(value);
-            
-            // Alert the waiting processes that we are done
-            exit(result);
+        //Check that the value is of the correct number
+        if (value > 1) {
+            if (value < 5) {
+                 // Store result of 
+                 result = calculateFactorial(value);
+
+                 // Alert the waiting processes that we are done
+                 // is there a way of achieving this without using exit??
+                 exit(result); 
+            }
+            // > 1 && > 5
+            else {
+                printf("the number you entered was not an integer between 1 and 5." );
+                return 1;
+            }
+        }
+        // < 1
+        else {
+            printf("the number you entered was not an integer between 1 and 5." );
+            return 1;
         }
     } 
     // Inside the parent
@@ -57,8 +72,18 @@ int main(int argc, char* argv[]) {
         // Fixing the result value - the value is multiplied by 255
         result = result / 255;
         
-        // Output as specified by the assignment
-        printf("Factorial of %d = %d\n", value, result);
+        // if something happened notify the user
+        if (result == 0) {
+            printf("\nAn error occurred. Please try again");
+        }
+        else if (value > 5) {
+            printf("\nAn error occurred. Please try again");
+        }
+        else {
+            // Output as specified by the assignment
+            printf("Factorial of %d = %d\n", value, result);
+        }
+        
         
     }
     // If the fork failed handle the exception - end the program with code 1

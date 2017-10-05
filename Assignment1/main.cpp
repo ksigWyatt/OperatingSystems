@@ -66,16 +66,11 @@ int main(int argc, char* argv[]) {
     else if (pid > 0){
         
         // Waiting for the child to finish
-        wait(&result);
-        wait(&value);
+        wait(&status);
         
         // List that did not work - But might be correct after some factoring
-        //WEXITSTATUS(status);
-        
-        
-        // Fixing the result value - the value is multiplied by 255
-        result = result / 255;
-        
+        result = WEXITSTATUS(status);
+       
         // if something happened notify the user
         if (result == 0) {
             printf("\nAn error occurred. Please try again");

@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
         // Waiting for the child to finish
         wait(&status);
         
-        // List that did not work - But might be correct after some factoring
+        //Exit status holds the the least significant 8 bits of the status argument 
         result = WEXITSTATUS(status);
        
         // if something happened notify the user

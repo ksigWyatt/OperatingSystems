@@ -26,7 +26,7 @@ _Requirements_
 
 ### Assignment 2 - Oct 10, 2017                                                                        
 _Requirements_
-- Write a C program using the fork() system call that generates the Fibonacci sequence in the child process. 
+- Write a C/C++ program using the fork() system call that generates the Fibonacci sequence in the child process. 
 - The number of the sequence will be provided in the command line. _For example, if 5 is provided, the first five numbers in the Fibonacci sequence will be output by the child process._  
 - Because the parent and child processes have their own copies of the data it will be necessary for the child to output the sequence.
 - Have the parent invoke the wait() call to wait for the child process to complete before exiting the program. 

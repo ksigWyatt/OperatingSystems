@@ -20,6 +20,7 @@ using namespace std;
 int result = 0;
 int value = 0;
 
+
 int calculateFibonacci(int value) {
     // init of result to 1
     result = 1;
@@ -28,6 +29,9 @@ int calculateFibonacci(int value) {
     if( value == 0){
         return 0;
     } 
+    
+    // this might be wrong / not accurate to use because this returns the sum of
+    // the series. Not the series itself. Might want to use an array or something.
     for (i = 2; i <= value; i++) {
      
         c = a + result;

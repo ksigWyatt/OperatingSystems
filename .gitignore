@@ -35,6 +35,7 @@
 # Extra files as needed
 /.vscode/
 *.docx
+*.doc
 
 ## Netbeans IDE Specific files
 **/nbproject/

@@ -36,6 +36,7 @@
 /.vscode/
 *.docx
 *.doc
+*.tmp
 
 ## Netbeans IDE Specific files
 **/nbproject/

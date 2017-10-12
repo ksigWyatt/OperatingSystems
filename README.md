@@ -24,8 +24,8 @@ _Requirements_
 - Include comments in your program.
 - You MUST print the output INSIDE the parent process.
 
-### Assignment 2 - Oct 10, 2017                                                                        
-_Requirements_
+### Assignment 2 - Oct 12, 2017                                                                        
+_Requirements - not required to submit code_ 
 - Write a C/C++ program using the fork() system call that generates the Fibonacci sequence in the child process. 
 - The number of the sequence will be provided in the command line. _For example, if 5 is provided, the first five numbers in the Fibonacci sequence will be output by the child process._  
 - Because the parent and child processes have their own copies of the data it will be necessary for the child to output the sequence.

@@ -17,28 +17,39 @@ using namespace std;
 
 
 // init of Global vars
-int result = 0;
+int resultArray[5]; // Might need to make result an array? or another Data Type
 int value = 0;
 
 
+// Use pointer for array instead?
 int calculateFibonacci(int value) {
-    // init of result to 1
-    result = 1;
-    int a = 0, c, i;
+    // init
+    int t1 = 0, t2 = 1, nextTerm = 0;
     
-    if( value == 0){
+    if(value == 0){
         return 0;
     } 
     
-    // this might be wrong / not accurate to use because this returns the sum of
-    // the series. Not the series itself. Might want to use an array or something.
-    for (i = 2; i <= value; i++) {
-     
-        c = a + result;
-        a = result;
-        result = c;
+    // Increment through and print n terms of fibonacci sequence
+    for (int i = 1; i <= value; ++i)
+    {
+        // Prints the first two terms as 1.
+        if(i == 1)
+        {
+            cout << t1;
+            continue;
+        }
+        if(i == 2)
+        {
+            cout << " " << t2 << " ";
+            continue;
+        }
+        resultArray[i + 1] = t1 + t2;
+        t1 = t2;
+        t2 = resultArray[i + 1];
+        
     }
-   return result; 
+   return resultArray[]; 
 }
 
 
@@ -59,10 +70,15 @@ int main(int argc, char** argv) {
         if (value >= 1) {
             if (value <= 5) {
                  // Store result of 
-                 result = calculateFibonacci(value);
+                 resultArray[] = calculateFibonacci(value);
 
                  // Alert the waiting processes that we are done
-                 printf("The first %d numbers in Fibonacci are: %d\n", value, result);          
+                 printf("The first %d numbers in Fibonacci are: ", value); 
+                 
+                 //Print the numbers in order as an array
+                 for (int i = 0; i < value; i++) {
+                     printf("%d, ", resultArray[i]);
+                 }
                  
             }
             // > 1 && > 5
@@ -81,10 +97,10 @@ int main(int argc, char** argv) {
     else if (pid > 0){
         
 //        // Waiting for the child to finish
-//        wait(&status);
+        wait(&status);
 //        
 //        //Exit status holds the the least significant 8 bits of the status argument 
-//        result = WEXITSTATUS(status);
+        resultArray[] = WEXITSTATUS(status);
         
     }
     // If the fork failed handle the exception - end the program with code 1

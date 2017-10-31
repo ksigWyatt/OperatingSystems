@@ -6,6 +6,8 @@ This repo is a workspace for all homework assignments that were worked on in my 
 - Threading
 - Process Communication
 - Multi Processing
+- Deadlocks
+- Synchronization of Processes
 
 ### Compiler
 Cygwin GCC / C++ Compiler

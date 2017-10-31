@@ -38,6 +38,9 @@
 *.doc
 *.tmp
 
-## Netbeans IDE Specific files
+# Netbeans IDE Specific files
 **/nbproject/
 *.inc
+
+# Eclipse Meta files
+*/.metadata/

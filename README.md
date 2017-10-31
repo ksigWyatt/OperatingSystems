@@ -31,3 +31,19 @@ _Requirements - not required to submit code_
 - Because the parent and child processes have their own copies of the data it will be necessary for the child to output the sequence.
 - Have the parent invoke the wait() call to wait for the child process to complete before exiting the program. 
 - Perform necessary error checking to ensure that a non-negative number is passed on the command line.
+
+### Assignment 3 - November 7, 2017
+_Requirements_
+- Develop a Java monitor, called Garden. Three threads work in the garden and their names are Jordan, Charles, and Tracy.
+- Your Garden class must be based on Lock and Condition.
+- Their coordination must work as described: 
+    - Jordan digs 10 holes.
+    - Charles plants something in these 10 holes.
+    - Tracy fills these ten holes after being planted.
+    - Jordan will wait if there are five unfilled holes.
+    - Charles will wait if all holes are with plants.
+    - Tracy will wait if all holes are either empty or already filled.
+    - It takes Jordan less than 100 milliseconds to dig a hole.
+    - It takes Charles less than 500 milliseconds to plant something in a hole.
+    - It takes Tracy less than 500 milliseconds to fill a hole.
+- Use conditions and locks to solve the problems. Do not use Java's synchronized, wait, and notify commands.

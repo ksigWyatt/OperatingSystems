@@ -17,8 +17,13 @@ public class Garden {
 		lock.lock(); // Set lock
 		
 		try {
-			unFull.await();
-			System.out.println("Digging");
+			// Use a LinkedList as the queue for the waiting threads
+//			while (queue.size() == CAPACITY) { 
+//				System.out.println(Thread.currentThread().getName() 
+//					+ " : Buffer is full, waiting"); 
+//				unFull.await();
+//			}
+
 			full.signal(); // signal waiting thread
 		} finally {
 			lock.unlock();

@@ -1,14 +1,27 @@
+import java.util.Random;
 
 public class Tracy implements Runnable {
 
-	public Tracy(Garden garden) {
-		// TODO Auto-generated constructor stub
-	}
+	 Garden garden;
+	    Random rand = new Random();
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+	    public Tracy(Garden g) {
+	        this.garden = g;
+	    }
+
+	    public void run() {
+	        try {
+	            Thread.sleep(rand.nextInt(1000)); // makes the execution more random
+	            for (int i = 0; i < 10; i++) {
+	                garden.waitToDig();
+	                garden.dig();
+	                Thread.sleep(rand.nextInt(100)); // digging
+	            }
+	        } catch (InterruptedException e) {
+	            System.out.println(e);
+	            e.printStackTrace();
+	            System.exit(1);
+	        }
+	    }
 
 }

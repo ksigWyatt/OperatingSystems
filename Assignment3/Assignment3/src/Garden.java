@@ -2,11 +2,12 @@ import java.util.concurrent.locks.*;
 
 
 public class Garden {
-	// Initialize the locks
+	// Initialize the locks & conditions
 	final Lock lock = new ReentrantLock();
 	final Condition unFull  = lock.newCondition(); 
 	final Condition full = lock.newCondition(); 
 	
+	// init waiting on the lock
 	public void waitToDig() throws InterruptedException {
 		
 	}
@@ -14,13 +15,19 @@ public class Garden {
 	// dig the hole
 	public void dig() throws InterruptedException {
 		lock.lock(); // Set lock
+		
 		try {
-			// unFull.await();
-			// full.signal(); // signal waiting thread
+			// Use a LinkedList as the queue for the waiting threads
+//			while (queue.size() == CAPACITY) { 
+//				System.out.println(Thread.currentThread().getName() 
+//					+ " : Buffer is full, waiting"); 
+//				unFull.await();
+//			}
+
+			full.signal(); // signal waiting thread
 		} finally {
 			lock.unlock();
 		}
-		
 	}
 	
 	// Plant something in the hole
@@ -41,12 +48,12 @@ public class Garden {
 		lock.lock(); // set lock
 		
 		try {
-			// unFull.await();
+			full.await();
+			System.out.println("Filling");
 			
-			//full.signal(); // signal waiting thread
+			unFull.signal(); // signal waiting thread
 		} finally {
 			lock.unlock();
 		}
 	}
-
 }

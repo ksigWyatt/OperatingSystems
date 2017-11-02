@@ -44,6 +44,7 @@
 
 # Eclipse Meta files
 */.metadata/
+*/.recommenders
 
 # Adding .makefile because it's created when making a new project 
 # and not required for proper operation of the applications

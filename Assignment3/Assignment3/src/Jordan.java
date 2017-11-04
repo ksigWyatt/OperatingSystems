@@ -9,13 +9,14 @@ class Jordan implements Runnable {
         this.garden = g;
     }
 
+    // Jordan will wait if there are five unfilled holes.s
     public void run() {
         try {
             Thread.sleep(rand.nextInt(1000)); // makes the execution more random
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++) { // Dig 10 holes
                 garden.waitToDig();
                 garden.dig();
-                Thread.sleep(rand.nextInt(100)); // digging
+                Thread.sleep(rand.nextInt(100)); // digging - It takes Jordan less than 100 milliseconds to dig a hole.
             }
         } catch (InterruptedException e) {
             System.out.println(e);

@@ -1,6 +1,6 @@
 # Operating Systems - COP 4610
 
-This repo is a workspace for all homework assignments that were worked on in my senior Operating Systems class. The class emphasised C/C++ languages in order to take advantage of the system calls on various systems. 
+This repo is a workspace for all homework assignments that were worked on in my senior Operating Systems class. The class emphasised C/C++ languages as well as the Java Runnable Library in order to take advantage of the system calls & threads on various systems. 
 
 ## Topics 
 - Threading

@@ -2,16 +2,16 @@ import java.util.concurrent.locks.*;
 
 
 public class Garden {
-	// Init of global variables that will be helpful for tracking the number of holes that are available
+	// init of global variables that will be helpful for tracking the number of holes that are available
 	int numOfHoles = 0;
 	int filledHoles = 0;
 	int holesPlanted = 0;
 	int num = 0;
 	
-	// Initialize the locks for the Garden
+	// init the locks for the digging of holes
 	final Lock lock = new ReentrantLock();
-	final Condition unFull  = lock.newCondition(); 
-	final Condition full = lock.newCondition();
+	final Condition unFullOfHoles  = lock.newCondition(); 
+	final Condition fullOfHoles = lock.newCondition();
 
 	// init the locks for planting plants in the holes
 	final Condition unFullOfPlants = lock.newCondition(); 
@@ -21,9 +21,22 @@ public class Garden {
 	final Condition unFilledAllHoles = lock.newCondition(); 
 	final Condition filledAllHoles = lock.newCondition(); 
 	
+	// MARK: Waiting functions
 	// Jordan will wait if there are five unfilled holes.
 	public void waitToDig() throws InterruptedException {
-		
+		if (numOfHoles >= 5) {
+			System.out.println("Jordan is waiting to dig a hole.");
+		}
+		lock.lock(); // Set lock
+		try {
+			// if there is more than 5 holes dug then wait for the others to catch up
+			while (numOfHoles >= 5) {
+				fullOfHoles.await();
+			}
+			unFullOfPlants.signal(); // signal to start planting plants
+		} finally {
+			lock.unlock();
+		}
 	}
 	
 	// Tracy will wait if all holes are either empty or already filled.
@@ -36,8 +49,17 @@ public class Garden {
 		lock.lock(); // Set lock
 		
 		try {
+			numOfHoles++; // increment the # of holes that have been dug
 			
-			full.signal(); // signal waiting thread
+			// if there's 5 holes then we must wait while the holes become full
+			while (numOfHoles == 5) {
+				fullOfHoles.await();
+			}
+			
+			// inc the number of hole that was planted as they are planted
+			System.out.println("Jordan dug a hole." + "\t\t\t\t" + num++);
+			
+			fullOfHoles.signal(); // alert to others that we are full of holes
 		} finally {
 			lock.unlock();
 		}
@@ -48,9 +70,7 @@ public class Garden {
 		lock.lock(); // set lock
 		
 		try {
-			// unFull.await();
-			
-			// full.signal(); // signal waiting thread
+			//System.out.println("Charles planted a hole." + "\t", ++num);
 		} finally {
 			lock.unlock();
 		}
@@ -61,10 +81,7 @@ public class Garden {
 		lock.lock(); // set lock
 		
 		try {
-			full.await();
-			System.out.println("Filling");
 			
-			unFull.signal(); // signal waiting thread
 		} finally {
 			lock.unlock();
 		}

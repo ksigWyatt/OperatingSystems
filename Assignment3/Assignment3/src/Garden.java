@@ -2,10 +2,11 @@ import java.util.concurrent.locks.*;
 
 
 public class Garden {
-	// Initialize the locks & conditions
+	// Initialize the locks
 	final Lock lock = new ReentrantLock();
 	final Condition unFull  = lock.newCondition(); 
-	final Condition full = lock.newCondition(); 
+	final Condition full = lock.newCondition();
+	
 	
 	// init waiting on the lock
 	public void waitToDig() throws InterruptedException {
@@ -17,13 +18,7 @@ public class Garden {
 		lock.lock(); // Set lock
 		
 		try {
-			// Use a LinkedList as the queue for the waiting threads
-//			while (queue.size() == CAPACITY) { 
-//				System.out.println(Thread.currentThread().getName() 
-//					+ " : Buffer is full, waiting"); 
-//				unFull.await();
-//			}
-
+			
 			full.signal(); // signal waiting thread
 		} finally {
 			lock.unlock();

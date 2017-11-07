@@ -120,7 +120,7 @@ public class Garden {
 				unFilledAllHoles.await();
 			}
 		
-			System.out.println("Tracey Filled a hole." + "\t\t\t" + ++filledHoles);
+			System.out.println("Tracy Filled a hole." + "\t\t\t" + ++filledHoles);
 			
 			// wait because there's no other work to be done at this time
 			filledAllHoles.signal();

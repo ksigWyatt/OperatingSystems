@@ -1,6 +1,6 @@
 import java.util.concurrent.locks.*;
 
-
+// create monitor
 public class Garden {
 	// init of global variables that will be helpful for tracking the number of holes that are available
 	int numOfHoles = 0;

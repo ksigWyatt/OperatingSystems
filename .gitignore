@@ -52,3 +52,6 @@
 
 # Screenshots
 *.png
+
+# Binary files
+*.zip

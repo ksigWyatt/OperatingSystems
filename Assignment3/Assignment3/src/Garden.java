@@ -101,8 +101,8 @@ public class Garden {
 			
 			// Signal all others that we are done planting and they can resume their operations
 			unFullOfHoles.signal(); // dig more holes
-			unFilledAllHoles.signal(); // fill over more holes
 			filledAllHoles.signal(); // wait for more holes to be planted
+			unFilledAllHoles.signal(); // fill over more holes
 			fullOfHoles.signal(); // wait for holes to be full
 		} finally {
 			lock.unlock();

@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.*;
 
 class Jordan implements Runnable {
 
@@ -12,7 +13,8 @@ class Jordan implements Runnable {
     // Jordan will wait if there are five unfilled holes.s
     public void run() {
         try {
-            Thread.sleep(rand.nextInt(1000)); // makes the execution more random
+        	// makes the execution more random
+            Thread.sleep(rand.nextInt(1000)); 
             for (int i = 0; i < 10; i++) { // Dig 10 holes
                 garden.waitToDig();
                 garden.dig();

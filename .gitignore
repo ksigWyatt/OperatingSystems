@@ -49,3 +49,9 @@
 # Adding .makefile because it's created when making a new project 
 # and not required for proper operation of the applications
 **/Makefile
+
+# Screenshots
+*.png
+
+# Binary files
+*.zip

@@ -2,14 +2,32 @@ import java.util.concurrent.locks.*;
 
 
 public class Garden {
-	// Initialize the locks
+	// Init of global variables that will be helpful for tracking the number of holes that are available
+	int numOfHoles = 0;
+	int filledHoles = 0;
+	int holesPlanted = 0;
+	int num = 0;
+	
+	// Initialize the locks for the Garden
 	final Lock lock = new ReentrantLock();
 	final Condition unFull  = lock.newCondition(); 
 	final Condition full = lock.newCondition();
+
+	// init the locks for planting plants in the holes
+	final Condition unFullOfPlants = lock.newCondition(); 
+	final Condition fullOfPlants = lock.newCondition();  
 	
+	// init of locks for filling the holes afterwarrd
+	final Condition unFilledAllHoles = lock.newCondition(); 
+	final Condition filledAllHoles = lock.newCondition(); 
 	
-	// init waiting on the lock
+	// Jordan will wait if there are five unfilled holes.
 	public void waitToDig() throws InterruptedException {
+		
+	}
+	
+	// Tracy will wait if all holes are either empty or already filled.
+	public void waitToFillHole() throws InterruptedException {
 		
 	}
 

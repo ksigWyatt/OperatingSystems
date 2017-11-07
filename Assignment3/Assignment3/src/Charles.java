@@ -14,10 +14,9 @@ public class Charles implements Runnable {
     // Charles will wait if all holes are with plants.
     public void run() {
         try {
-            Thread.sleep(rand.nextInt(1000)); // makes the execution more random
             for (int i = 0; i < 10; i++) {
-                garden.plant();
-                Thread.sleep(rand.nextInt(500)); // filling
+                garden.plant(); // plant a plant in a hole
+                Thread.sleep(rand.nextInt(500));
             }
         } catch (InterruptedException e) {
             System.out.println(e);

@@ -14,11 +14,11 @@ public class Tracy implements Runnable {
 	    // Tracy fills these ten holes after being planted.
 	    public void run() {
 	        try {
-	            Thread.sleep(rand.nextInt(1000)); // makes the execution more random
 	            for (int i = 0; i < 10; i++) {
-	                garden.waitToDig();
+	            	// if there are no holes to fill
+	                garden.waitToFillHole();
 	                garden.fill();
-	                Thread.sleep(rand.nextInt(500)); // digging
+	                Thread.sleep(rand.nextInt(500)); // filling
 	            }
 	        } catch (InterruptedException e) {
 	            System.out.println(e);

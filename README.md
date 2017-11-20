@@ -9,8 +9,9 @@ This repo is a workspace for all homework assignments that were worked on in my 
 - Deadlocks
 - Synchronization of Processes
 
-### Compiler
-Cygwin GCC / C++ Compiler
+### Compilers
+- Cygwin GCC / C++ Compiler
+- Javac & JVM
 
 ## Assignments
 
